@@ -2,17 +2,20 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <div th:replace="fragments/stylesheets :: stylesheet"></div>
     <meta charset="UTF-8">
     <title>Venue List</title>
 </head>
+
 <body>
 <div th:replace="fragments/header :: header">Header</div>
+<main>
 <div th:each="venueName, iStat : ${venueNames}">
     <a class="buttonLook mediumButton"
        th:href="@{|/venuedetails/${iStat.index}}"
        th:text="|${venueName}|">Venue name</a>
 
 </div>
-
+</main>
 </body>
 </html>

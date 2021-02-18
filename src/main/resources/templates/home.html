@@ -2,11 +2,14 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <div th:replace="fragments/stylesheets :: stylesheet"></div>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
 <div th:replace="fragments/header :: header">Header</div>
-
+<main>
+<p>Some text for the home page</p>
+</main>
 </body>
 </html>

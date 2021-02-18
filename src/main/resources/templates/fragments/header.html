@@ -7,12 +7,17 @@
 </head>
 <body>
 <div class="nav" th:fragment="header">
+    <header>
 <h1>Let's Party!</h1>
-    <div class="navbuttons">
-        <a class="buttonLook menuButton" th:href="@{/home}">Home</a>
-        <a class="buttonLook menuButton" th:href="@{/venuelist}">Venues</a>
-        <a class="buttonLook menuButton" th:href="@{/about}">About</a>
-    </div>
+    <nav>
+        <ul>
+            <li><a class="buttonLook menuButton" th:href="@{/home}">Home</a></li>
+            <li><a class="buttonLook menuButton" th:href="@{/venuelist}">Venues</a></li>
+        <li><a class="buttonLook menuButton" th:href="@{/about}">About</a>
+        </li>
+        </ul>
+    </nav>
+    </header>
 </div>
 
 </body>

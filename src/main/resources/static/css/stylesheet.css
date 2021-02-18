@@ -1,0 +1,47 @@
+
+
+p,a,li,h1,h2,h3{
+    font-family: Verdana, sans-serif;
+}
+
+h1, h2{
+    font-size: 2rem;
+}
+
+nav ul {
+    display: flex;
+    width: 800px;
+    margin: auto;
+    height: 50px;
+}
+
+nav ul li {
+    width: 20%;
+    height: inherit;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul li a{
+    display: inline-block;
+    color: lightgrey;
+    padding: 17px 0 12px 0;
+    width: 100%;
+    text-align: center;
+
+}
+
+header{
+    background-color: #808080;
+}
+
+body{
+    background-color: #a9a9a9;
+}
+
+main{
+    width:80%;
+    margin: auto;
+
+}
