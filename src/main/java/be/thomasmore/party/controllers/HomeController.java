@@ -21,12 +21,7 @@ public class HomeController {
     private VenueRepository venueRepository;
 
 
-    private final String[] venueNames = {"De Loods", "De Club", "De Hangar", "Zapoi", "Kuub", "Cuba Libre"};
     private final DayOfWeek[] weekend = {DayOfWeek.SATURDAY, DayOfWeek.SUNDAY};
-    private final Venue[] venues = {
-            new Venue("De Loods", "link", 150, false, true, false, true, "Mechelen", 1),
-            new Venue("De club", "link",200, false, false, true, false, "Sint-Katelijne", 4 ),
-            new Venue("De hangar", "link" ,80, true, true, true, false, "Duffel", 3)};
 
     @GetMapping({"/", "/home"})
     public String home(Model model){
@@ -46,12 +41,6 @@ public class HomeController {
         return "pay";
     }
 
-    /*@GetMapping({"/venuedetails/{venueName}", "/venuedetails"})
-    public String venueDetails(Model model, @PathVariable(required = false) String venueName){
-        model.addAttribute("venueName", venueName!=null ? venueName : "--No venue chosen--");
-        return "venuedetails";
-    }*/
-
     @GetMapping("/venuelist")
     public String venueList(Model model){
         Iterable<Venue> venues = venueRepository.findAll();
@@ -67,21 +56,21 @@ public class HomeController {
         return false;
     }
 
-    @GetMapping({"/venuedetails", "/venuedetails/{optVenueIndex}"})
-    public String venueDetailsByIndex(Model model, @PathVariable Optional<Integer> optVenueIndex){
+    @GetMapping({"/venuedetails", "/venuedetails/{id}"})
+    public String venueDetailsById(Model model, @PathVariable Optional<Integer> id){
         Venue venue = null;
         ArrayList<String> errors = new ArrayList<>();
-        int venueIndex=0;
-        if(optVenueIndex.isPresent()){
-            venueIndex = optVenueIndex.get();
+        int venueIndex=1;
+        if(id.isPresent()){
+            venueIndex = id.get();
         }
         else{errors.add("Geef een nummer");}
-        if (venueIndex<0 || venueIndex > venues.length-1){
-        errors.add("Geef een nummer dat bestaat");
-    }
+        if (venueIndex<1 || venueIndex > venueRepository.count()){
+            errors.add("Geef een nummer dat bestaat");
+        }
 
-        if (errors.isEmpty()){
-        venue = venues[venueIndex];}
+        if (errors.isEmpty() && venueRepository.findById(venueIndex).isPresent()){
+            venue = venueRepository.findById(venueIndex).get();}
         model.addAttribute("index",venueIndex);
         model.addAttribute("errors", errors);
         model.addAttribute("venue",venue);
