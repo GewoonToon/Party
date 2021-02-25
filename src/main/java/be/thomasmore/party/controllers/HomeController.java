@@ -1,6 +1,8 @@
 package be.thomasmore.party.controllers;
 
+import be.thomasmore.party.model.Artist;
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.ArtistRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class HomeController {
 
     @Autowired
     private VenueRepository venueRepository;
+    @Autowired
+    private ArtistRepository artistRepository;
+
 
 
     private final DayOfWeek[] weekend = {DayOfWeek.SATURDAY, DayOfWeek.SUNDAY};
@@ -77,4 +82,35 @@ public class HomeController {
         model.addAttribute("venue",venue);
         return "venuedetails";
     }
+
+    @GetMapping("/artistlist")
+    public String artistlist(Model model){
+        Iterable<Artist> artists = artistRepository.findAll();
+        model.addAttribute("artists", artists);
+        return "artistlist";
+    }
+
+
+    @GetMapping({"/artistdetails", "/artistdetails/{id}"})
+    public String artistDetailsById(Model model, @PathVariable Optional<Integer> id){
+        Artist artist = null;
+        ArrayList<String> errors = new ArrayList<>();
+        int artistIndex=1;
+        if(id.isPresent()){
+            artistIndex = id.get();
+        }
+        else{errors.add("Geef een nummer");}
+        if (artistIndex<1 || artistIndex > artistRepository.count()){
+            errors.add("Geef een nummer dat bestaat");
+        }
+
+        if (errors.isEmpty() && artistRepository.findById(artistIndex).isPresent()){
+            artist = artistRepository.findById(artistIndex).get();}
+        model.addAttribute("index",artistIndex);
+        model.addAttribute("count",artistRepository.count());
+        model.addAttribute("errors", errors);
+        model.addAttribute("artist",artist);
+        return "artistdetails";
+    }
+
 }

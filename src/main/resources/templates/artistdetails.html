@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/stylesheets :: stylesheet"></div>
+    <meta charset="UTF-8">
+    <title>Venue Details</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">Header</div>
+<main>
+    <div class="row1">
+        <div th:if="${errors}">
+            <p th:each="error : ${errors}" th:text="${error}">error</p>
+        </div>
+
+        <div th:if="${artist!=null}">
+            <h2 th:text="${artist.getArtistName()}">venuedetails</h2>
+
+            <form th:if="${index==1}" th:action="@{|/artistdetails/${count}|}">
+                <input type="submit" value="<"/>
+            </form>
+
+            <form  th:if="${index!=1}" th:action="@{|/artistdetails/${(index+-1)}|}">
+                <input type="submit" value="<"/>
+            </form>
+
+
+
+            <form th:if="${count==index}" th:action="@{|/artistdetails/1|}">
+                <input type="submit" value=">"/>
+            </form>
+            <form th:if="${count!=index}" th:action="@{|/artistdetails/${(index+1)}|}">
+                <input type="submit" value=">"/>
+            </form>
+
+
+            <div class="startgrid">
+                <p>Link with more info: </p>
+                <p class="secondcol" th:text="${artist.getLinkMoreInfo()}">Linkmoreinfo</p>
+
+                <p>Bio: </p>
+                <p class="secondcol" th:text="${artist.getBio()}">Bio</p>
+
+                <p>Genre: </p>
+                <p class="secondcol" th:text="${artist.getGenre()}">Genre</p>
+
+                <p>Portfolio: </p>
+                <p class="secondcol" th:text="${artist.getPortfolio()}">Portfolio</p>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
