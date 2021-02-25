@@ -53,6 +53,22 @@ public class HomeController {
         return "venuelist";
     }
 
+    @GetMapping("/venuelist/outdoor/yes")
+    public String venuelistOutdoorYes(Model model){
+        Iterable<Venue> venues = venueRepository.findByOutdoor(true);
+        model.addAttribute("venues", venues);
+        return "venuelist";
+    }
+
+    @GetMapping("/venuelist/outdoor/no")
+    public String venuelistOutdoorNo(Model model){
+        Iterable<Venue> venues = venueRepository.findByOutdoor(false);
+        model.addAttribute("venues", venues);
+        return "venuelist";
+    }
+
+
+
     public boolean isWeekend(DayOfWeek[] weekend){
         for (DayOfWeek day : weekend){
             if (LocalDate.now().getDayOfWeek().equals(day)){return true;}
@@ -89,6 +105,8 @@ public class HomeController {
         model.addAttribute("artists", artists);
         return "artistlist";
     }
+
+
 
 
     @GetMapping({"/artistdetails", "/artistdetails/{id}"})

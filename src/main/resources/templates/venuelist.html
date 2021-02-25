@@ -10,6 +10,19 @@
 <body>
 <div th:replace="fragments/header :: header">Header</div>
 <main>
+    <div id="filter">
+    <p>Outdoor:
+    <form th:action="@{/venuelist}">
+        <input type="submit" value="all">
+    </form>
+    <form th:action="@{/venuelist/outdoor/yes}">
+        <input type="submit" value="yes">
+    </form>
+    <form th:action="@{/venuelist/outdoor/no}">
+        <input type="submit" value="no">
+    </form>
+        </p>
+    </div>
 <div th:each="venue : ${venues}">
     <a class="buttonLook mediumButton"
        th:href="@{|/venuedetails/${venueStat.index+1}}"

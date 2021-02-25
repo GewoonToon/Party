@@ -10,6 +10,8 @@
 <body>
 <div th:replace="fragments/header :: header">Header</div>
 <main>
+
+
     <div th:each="artist : ${artists}">
         <a class="buttonLook mediumButton"
            th:href="@{|/artistdetails/${artistStat.index+1}}"

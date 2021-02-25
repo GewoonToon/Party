@@ -16,7 +16,7 @@
 
         <div th:if="${artist!=null}">
             <h2 th:text="${artist.getArtistName()}">venuedetails</h2>
-
+<div id="filter">
             <form th:if="${index==1}" th:action="@{|/artistdetails/${count}|}">
                 <input type="submit" value="<"/>
             </form>
@@ -33,7 +33,7 @@
             <form th:if="${count!=index}" th:action="@{|/artistdetails/${(index+1)}|}">
                 <input type="submit" value=">"/>
             </form>
-
+</div>
 
             <div class="startgrid">
                 <p>Link with more info: </p>
