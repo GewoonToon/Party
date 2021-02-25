@@ -33,6 +33,10 @@ public class Venue {
         return capacity;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setLinkmoreinfo(String linkmoreinfo) {
         this.link_more_info = linkmoreinfo;
     }

@@ -59,7 +59,7 @@
 
 <div th:each="venue : ${venues}">
     <a class="buttonLook mediumButton"
-       th:href="@{|/venuedetails/${venueStat.index+1}}"
+       th:href="@{|/venuedetails/${venue.getId()}}"
        th:text="|${venue.getVenuename()}|">Venue name</a>
 </div>
 </div>
