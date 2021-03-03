@@ -8,10 +8,10 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header">Header</div>
-<main>
-
 <div th:if="${venues!=null}">
     <div th:if="${filter}" class="filter">
+        <a th:href="@{.}">/\</a>
+
         <p>Outdoor: </p>
 
         <p>Indoor: </p>
@@ -19,6 +19,10 @@
         <p>Indoor: </p>
 
     </div>
+    <a th:unless="${filter}" class="prevnextbuttons" th:classappend="filter" th:href="@{filter}">\/</a>
+<main>
+
+
 
 
 <div th:each="venue : ${venues}">

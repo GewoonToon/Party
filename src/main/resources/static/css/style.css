@@ -61,8 +61,10 @@ p{
 }
 
 .filter{
-    display: flex;
+    float: left;
 }
+
+.prevnextbuttons{display:flex;}
 
 .active{
     background-color: green;

@@ -18,10 +18,20 @@ public class VenueController {
     private VenueRepository venueRepository;
     /*---------------------------------------------------------------VENUEFUNCTIONS---------------------------------------------------------*/
 
-    @GetMapping("/venuelist")
-    public String venueList(Model model){
+    @GetMapping({"/venuelist", "/venuelist/{optfilter}"})
+    public String venueList(Model model, @PathVariable Optional<String> optfilter){
+        ArrayList<String> errors = new ArrayList<>();
         Iterable<Venue> venues = venueRepository.findAll();
+        boolean filter = false;
+        if(optfilter.isPresent() && optfilter.get().equals("filter")){
+            filter = true;
+        }
+        else{errors.add("Geef een filter");}
+
+
+        model.addAttribute("filter", filter);
         model.addAttribute("venues", venues);
+        model.addAttribute("errors", errors);
         return "venuelist";
     }
 
@@ -35,7 +45,7 @@ public class VenueController {
         }
         else{errors.add("Geef een nummer");}
         if (venueIndex<1 || venueIndex > venueRepository.count()){
-            errors.add("Geef een nummer dat bestaat");
+            errors.add("Geef een nummer tussen 1 en " + venueRepository.count());
         }
 
         Optional<Venue> optionalVenue = venueRepository.findById(venueIndex);
