@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -24,18 +25,29 @@ public class VenueController {
 
 
     @GetMapping({"/venuelist", "/venuelist/{optfilter}"})
-    public String venueList(Model model, @PathVariable Optional<String> optfilter){
+    public String venueList(Model model, @PathVariable Optional<String> optfilter, @RequestParam(required=false) Integer minCapacity){
+        logger.info(String.format("venueList -- min=%d", minCapacity));
         ArrayList<String> errors = new ArrayList<>();
-        Iterable<Venue> venues = venueRepository.findAll();
+        ArrayList<Venue> venuesfilter = new ArrayList<>();
         boolean filter = false;
+        for(Venue venue : venueRepository.findAll()){
+            venuesfilter.add(venue);
+        }
         if(optfilter.isPresent() && optfilter.get().equals("filter")){
             filter = true;
         }
         else{errors.add("Geef een filter");}
 
+        if(minCapacity!=null){
+            venuesfilter.removeIf(venue -> venue.getCapacity() < minCapacity);
+            model.addAttribute("min", minCapacity);
+        }
+        else{model.addAttribute("min", 0);}
+
+
         model.addAttribute("count", venueRepository.count());
         model.addAttribute("filter", filter);
-        model.addAttribute("venues", venues);
+        model.addAttribute("venues", venuesfilter);
         model.addAttribute("errors", errors);
         return "venuelist";
     }
