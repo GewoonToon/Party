@@ -31,7 +31,6 @@
     <a th:unless="${filter}" class="prevnextbuttons" th:classappend="filter" th:href="@{/venuelist/filter}">\/</a>
 <main>
 
-
 <div th:each="venue : ${venues}">
     <a class="buttonLook mediumButton"
        th:href="@{|/venuedetails/${venue.getId()}}"

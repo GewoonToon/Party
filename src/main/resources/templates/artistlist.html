@@ -10,7 +10,13 @@
 <body>
 <div th:replace="fragments/header :: header">Header</div>
 <main>
-
+    <form>
+        <div class="onefilter">
+            <label for="keyword" class="filtername">keyword: </label>
+            <input type="text" id="keyword" name="keyword" th:value="${keyword}">
+            <input type="submit" value="search">
+        </div>
+    </form>
 
     <div th:each="artist : ${artists}">
         <a class="buttonLook mediumButton"
