@@ -28,16 +28,17 @@ public class ArtistController {
     public String artistlist(Model model, @RequestParam(required = false) String keyword){
         ArrayList<Artist> artists = new ArrayList<>();
         logger.info(keyword);
-        for(Artist artist : artistRepository.findAll()){
-            artists.add(artist);
-        }
 
-        if(keyword!=null &&!keyword.isEmpty()){
+
+        /*if(keyword!=null &&!keyword.isEmpty()){
             artists.removeIf(artist -> !artist.getArtistName().contains(keyword));
             model.addAttribute("keyword", keyword);
         }
-        else{model.addAttribute("keyword", null);}
+        else{model.addAttribute("keyword", null);}*/
 
+        for(Artist artist: artistRepository.findByKeyword(keyword)){
+            artists.add(artist);
+        }
 
         model.addAttribute("artists", artists);
         return "artistlist";

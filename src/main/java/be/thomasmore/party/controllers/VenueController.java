@@ -37,27 +37,17 @@ public class VenueController {
         ArrayList<String> errors = new ArrayList<>();
         ArrayList<Venue> venuesfilter = new ArrayList<>();
         boolean filter = false;
-        for(Venue venue : venueRepository.findAll()){
-            venuesfilter.add(venue);
-        }
+
         if(optfilter.isPresent() && optfilter.get().equals("filter")){
             filter = true;
         }
         else{errors.add("Geef een filter");}
 
-        if(minCapacity!=null){
-            venuesfilter.removeIf(venue -> venue.getCapacity() < minCapacity);
-            model.addAttribute("min", minCapacity);
-        }
-        else{model.addAttribute("min", null);}
 
-        if(maxCapacity!=null){
-            venuesfilter.removeIf(venue -> venue.getCapacity()> maxCapacity);
-            model.addAttribute("max", maxCapacity);
-        }
-        else{model.addAttribute("max",null);}
-
-
+        for(Venue venue: venueRepository.finByCapacityBetween(minCapacity, maxCapacity)){
+            venuesfilter.add(venue);}
+        model.addAttribute("min", minCapacity);
+        model.addAttribute("max", maxCapacity);
 
 
         model.addAttribute("count", venueRepository.count());
