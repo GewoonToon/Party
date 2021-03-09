@@ -25,6 +25,26 @@
                 <label for="maxCapacity" class="filtername">Max </label>
                 <input type="number" id="maxCapacity" name="maxCapacity" th:value="${max}" step="50"> persons
             </div>
+            <div class="onefilter">
+                <label for="maxDistance" class="filtername">Max Distance: </label>
+                <input type="number" id="maxDistance" name="maxDistance" th:value="${maxd}">
+            </div>
+            <div><p>Indoor: </p>
+                <label for="iyes" class="filtername">Yes </label>
+                <input type="radio" id="iyes" name="filterindoor" value="yes" th:checked="${indoor.equals('yes')}">
+                <label for="ino" class="filtername">No </label>
+                <input type="radio" id="ino" name="filterindoor" value="no" th:checked="${indoor.equals('no')}">
+                <label for="iall" class="filtername">All </label>
+                <input type="radio" id="iall" name="filterindoor" value="all" th:checked="${indoor.equals('all')}">
+            </div>
+            <div><p>Outdoor: </p>
+                <label for="oyes" class="filtername">Yes </label>
+                <input type="radio" id="oyes" name="filteroutdoor" value="yes" th:checked="${outdoor.equals('yes')}">
+                <label for="ono" class="filtername">No </label>
+                <input type="radio" id="ono" name="filteroutdoor" value="no" th:checked="${outdoor.equals('no')}">
+                <label for="oall" class="filtername">All </label>
+                <input type="radio" id="oall" name="filteroutdoor" value="all" th:checked="${outdoor.equals('all')}">
+            </div>
         </form>
 
     </div>

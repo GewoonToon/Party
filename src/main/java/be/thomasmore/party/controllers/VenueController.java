@@ -27,29 +27,44 @@ public class VenueController {
     @GetMapping({"/venuelist", "/venuelist/{optfilter}"})
     public String venueList(Model model, @PathVariable Optional<String> optfilter,
                             @RequestParam(required=false) Integer minCapacity,
-                            @RequestParam(required=false) Integer maxCapacity
+                            @RequestParam(required=false) Integer maxCapacity,
+                            @RequestParam(required=false) Integer maxDistance,
+                            @RequestParam(required = false) String filterindoor,
+                            @RequestParam(required = false) String filteroutdoor
                             ){
 
 
         logger.info(String.format("venueList -- min=%d", minCapacity));
         logger.info(String.format("venueList -- max=%d", maxCapacity));
+        logger.info(String.format("venueList -- maxd=%d", maxDistance));
+        logger.info(filterindoor);
+        logger.info(filteroutdoor);
+
 
         ArrayList<String> errors = new ArrayList<>();
         ArrayList<Venue> venuesfilter = new ArrayList<>();
         boolean filter = false;
-
+        Boolean indoor = null;
+        Boolean outdoor = null;
         if(optfilter.isPresent() && optfilter.get().equals("filter")){
             filter = true;
         }
         else{errors.add("Geef een filter");}
+        if(filterindoor!=null && filterindoor.equals("yes")){indoor=true;}
+        if(filterindoor!=null && filterindoor.equals("no")){indoor=false;}
+        if(filteroutdoor!=null && filteroutdoor.equals("yes")){outdoor=true;}
+        if(filteroutdoor!=null && filteroutdoor.equals("no")){outdoor=false;}
 
 
-        for(Venue venue: venueRepository.finByCapacityBetween(minCapacity, maxCapacity)){
+        for(Venue venue: venueRepository.finByCriteria(minCapacity, maxCapacity, maxDistance, indoor, outdoor)){
             venuesfilter.add(venue);}
+
+
+        model.addAttribute("indoor", (filterindoor==null) ? "all" : filterindoor);
+        model.addAttribute("outdoor", (filteroutdoor==null) ? "all" : filteroutdoor);
+        model.addAttribute("maxd", maxDistance);
         model.addAttribute("min", minCapacity);
         model.addAttribute("max", maxCapacity);
-
-
         model.addAttribute("count", venueRepository.count());
         model.addAttribute("filter", filter);
         model.addAttribute("venues", venuesfilter);
