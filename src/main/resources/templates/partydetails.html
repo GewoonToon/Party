@@ -36,10 +36,18 @@
             </div>
 
             <div class="startgrid">
-                <p>Link with more info: </p>
-                <p class="secondcol" th:text="${party.price_In_Eur}">Linkmoreinfo</p>
 
+                <p th:if="${party.price_In_Eur==null && party.price_Presale_In_Eur==null}" class="firstcol">Free Party!</p>
 
+                <p th:unless="${party.price_In_Eur==null && party.price_Presale_In_Eur==null}" class="firstcol">Price: </p>
+                <p th:unless="${party.price_In_Eur==null && party.price_Presale_In_Eur==null}" class="secondcol"
+                   th:text="${party.price_Presale_In_Eur} + '€ (presale) / '+${party.price_In_Eur}+'€'">Price in euro</p>
+
+                <p class="firstcol">Doors: </p>
+                <p th:text="${party.doors}" class="secondcol">Doors</p>
+
+                <p th:if="${!party.extra_info.trim().isEmpty()}" class="firstcol">Extra info: </p>
+                <p th:if="${!party.extra_info.trim().isEmpty()}" th:text="${party.extra_info}" class="secondcol">Extra info</p>
 
             </div>
         </div>

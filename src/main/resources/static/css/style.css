@@ -51,6 +51,9 @@ main{
     grid-template-columns: 1fr 2fr;
 }
 
+.firstcol{
+    grid-column:1;
+}
 
 .secondcol{
     grid-column: 2;
