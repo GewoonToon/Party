@@ -28,4 +28,36 @@ public class Party {
         this.date = date;
         this.doors = doors;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getExtra_info() {
+        return extra_info;
+    }
+
+    public Integer getPrice_Presale_In_Eur() {
+        return price_Presale_In_Eur;
+    }
+
+    public Integer getPrice_In_Eur() {
+        return price_In_Eur;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Date getDoors() {
+        return doors;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
 }

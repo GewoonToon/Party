@@ -1,0 +1,49 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/stylesheets :: stylesheet"></div>
+    <meta charset="UTF-8">
+    <title>Party Details</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">Header</div>
+<main>
+    <div class="row1">
+        <div th:if="${errors}">
+            <p th:each="error : ${errors}" th:text="${error}">error</p>
+        </div>
+
+        <div th:if="${party!=null}">
+            <h2 th:text="${party.getName()}">venuedetails</h2>
+            <div class="prevnextbuttons">
+                <div th:if="${index==1}" >
+                    <a th:href="@{|/partydetails/${count}|}"><</a>
+                </div>
+
+                <div  th:if="${index!=1}" >
+                    <a th:href="@{|/partydetails/${(index+-1)}|}"><</a>
+                </div>
+
+
+
+                <div th:if="${count==index}" >
+                    <a th:href="@{|/partydetails/1|}">></a>
+                </div>
+                <div th:if="${count!=index}">
+                    <a  th:href="@{|/partydetails/${(index+1)}|}">></a>
+                </div>
+            </div>
+
+            <div class="startgrid">
+                <p>Link with more info: </p>
+                <p class="secondcol" th:text="${party.price_In_Eur}">Linkmoreinfo</p>
+
+
+
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -15,7 +15,7 @@
         </div>
 
         <div th:if="${artist!=null}">
-            <h2 th:text="${artist.getArtistName()}">venuedetails</h2>
+            <h2 th:text="${artist.artistName}">venuedetails</h2>
 <div class="prevnextbuttons">
             <div th:if="${index==1}" >
                 <a th:href="@{|/artistdetails/${count}|}"><</a>
@@ -37,16 +37,16 @@
 
             <div class="startgrid">
                 <p>Link with more info: </p>
-                <p class="secondcol" th:text="${artist.getLinkMoreInfo()}">Linkmoreinfo</p>
+                <p class="secondcol" th:text="${artist.linkMoreInfo}">Linkmoreinfo</p>
 
                 <p>Bio: </p>
-                <p class="secondcol" th:text="${artist.getBio()}">Bio</p>
+                <p class="secondcol" th:text="${artist.bio}">Bio</p>
 
                 <p>Genre: </p>
-                <p class="secondcol" th:text="${artist.getGenre()}">Genre</p>
+                <p class="secondcol" th:text="${artist.genre}">Genre</p>
 
                 <p>Portfolio: </p>
-                <p class="secondcol" th:text="${artist.getPortfolio()}">Portfolio</p>
+                <p class="secondcol" th:text="${artist.portfolio}">Portfolio</p>
 
 
 
