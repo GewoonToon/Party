@@ -1,5 +1,7 @@
 package be.thomasmore.party.model;
 
+import be.thomasmore.party.repositories.PartyRepository;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

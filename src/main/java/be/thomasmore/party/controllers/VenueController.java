@@ -1,6 +1,7 @@
 package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.PartyRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,9 @@ public class VenueController {
 
     @Autowired
     private VenueRepository venueRepository;
+
+    @Autowired
+    private PartyRepository partyRepository;
 
     private Logger logger = LoggerFactory.getLogger(VenueController.class);
     /*---------------------------------------------------------------VENUEFUNCTIONS---------------------------------------------------------*/
@@ -91,7 +95,7 @@ public class VenueController {
         if (errors.isEmpty() && optionalVenue.isPresent()){
             venue = optionalVenue.get();}
 
-
+        model.addAttribute("parties", partyRepository.findByVenue(venue));
         model.addAttribute("index",venueIndex);
         model.addAttribute("count",venueRepository.count());
         model.addAttribute("errors", errors);

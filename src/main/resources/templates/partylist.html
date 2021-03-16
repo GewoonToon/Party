@@ -15,7 +15,7 @@
     <div th:each="party : ${parties}">
         <a class="buttonLook mediumButton"
            th:href="@{|/partydetails/${party.getId()}}"
-           th:text="|${party.getName()}|">Artist name</a>
+           th:text="|${party.getName()}|">Party name</a>
 
     </div>
 </main>

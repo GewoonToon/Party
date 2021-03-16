@@ -2,6 +2,7 @@ package be.thomasmore.party.model;
 
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -14,8 +15,11 @@ public class Party {
     Date date;
     @Temporal(TemporalType.TIME)
     Date doors;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Venue venue;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Collection<Artist> artists;
 
     public Party(){}
 
