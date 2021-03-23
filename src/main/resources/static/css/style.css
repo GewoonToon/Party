@@ -1,6 +1,6 @@
 
 
-p,a,li,h1,h2,h3{
+p,a,li,h1,h2,h3 , label{
     font-family: Verdana, sans-serif;
 }
 
@@ -59,7 +59,7 @@ main{
     grid-column: 2;
 }
 
-p{
+p,label{
     padding: 2px;
 }
 
@@ -96,4 +96,16 @@ a.mediumButton {
     width: 400px;
     font-size: 1.2em;
     padding: 1em;
+}
+
+a.smallButton {
+    display: block;
+    margin: 2px;
+    width: 60px;
+    font-size: 1em;
+    padding: 0.2em;
+}
+
+.inputfield{
+    width: 30%;
 }

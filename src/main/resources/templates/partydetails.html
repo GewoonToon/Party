@@ -18,20 +18,22 @@
             <h2 th:text="${party.getName()}">venuedetails</h2>
             <div class="prevnextbuttons">
                 <div th:if="${index==1}" >
-                    <a th:href="@{|/partydetails/${count}|}"><</a>
+                    <a class="buttonLook smallButton" th:href="@{|/partydetails/${count}|}"><</a>
                 </div>
 
                 <div  th:if="${index!=1}" >
-                    <a th:href="@{|/partydetails/${(index+-1)}|}"><</a>
+                    <a class="buttonLook smallButton" th:href="@{|/partydetails/${(index+-1)}|}"><</a>
                 </div>
 
-
+                <div>
+                    <a class="buttonLook smallButton" th:href="@{|/admin/partyedit/${index}|}">Edit</a>
+                </div>
 
                 <div th:if="${count==index}" >
-                    <a th:href="@{|/partydetails/1|}">></a>
+                    <a class="buttonLook smallButton" th:href="@{|/partydetails/1|}">></a>
                 </div>
                 <div th:if="${count!=index}">
-                    <a  th:href="@{|/partydetails/${(index+1)}|}">></a>
+                    <a class="buttonLook smallButton" th:href="@{|/partydetails/${(index+1)}|}">></a>
                 </div>
             </div>
 

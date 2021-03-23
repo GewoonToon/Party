@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/stylesheets :: stylesheet"></div>
+    <meta charset="UTF-8">
+    <title>Party Edit</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">Header</div>
+<main>
+    <div class="row1">
+        <div th:if="${errors}">
+            <p th:each="error : ${errors}" th:text="${error}">error</p>
+        </div>
+
+        <div th:if="${party!=null}">
+            <h2 th:text="${party.name}">Partydetails</h2>
+
+            <div class="startgrid">
+
+                <label for="name" class="firstcol">Name: </label>
+                <input class="secondcol inputfield" type="text" id="name" name="name" th:value="${party.name}">
+
+                <label for="pricepre" class="firstcol">Price presale: </label>
+                <input class="secondcol inputfield" type="number" id="pricepre" name="pricepre" th:value="${party.price_Presale_In_Eur}">
+
+                <label for="price" class="firstcol">Price: </label>
+                <input class="secondcol inputfield" type="number" id="price" name="price" th:value="${party.price_In_Eur}">
+
+
+
+            </div>
+
+            <div>
+                <a class="buttonLook smallButton" th:href="@{|/partydetails/${index}|}">Cancel</a>
+            </div>
+
+
+        </div>
+    </div>
+</main>
+</body>
+</html>
