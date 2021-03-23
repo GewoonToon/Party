@@ -71,6 +71,30 @@ public class Party {
         return artists;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setExtra_info(String extra_info) {
+        this.extra_info = extra_info;
+    }
+
+    public void setPrice_Presale_In_Eur(Integer price_Presale_In_Eur) {
+        this.price_Presale_In_Eur = price_Presale_In_Eur;
+    }
+
+    public void setPrice_In_Eur(Integer price_In_Eur) {
+        this.price_In_Eur = price_In_Eur;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setDoors(Date doors) {
+        this.doors = doors;
+    }
+
     public Collection<Animal> getAnimals() {
         return animals;
     }

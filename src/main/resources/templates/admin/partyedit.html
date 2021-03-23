@@ -16,7 +16,7 @@
 
         <div th:if="${party!=null}">
             <h2 th:text="${party.name}">Partydetails</h2>
-
+<form th:action="@{|/admin/partyedit/${party.id}|}" method="post">
             <div class="startgrid">
 
                 <label for="name" class="firstcol">Name: </label>
@@ -35,6 +35,10 @@
             <div>
                 <a class="buttonLook smallButton" th:href="@{|/partydetails/${index}|}">Cancel</a>
             </div>
+            <div>
+                <input type="submit" class="submitButton" value="Save">
+            </div>
+</form>
 
 
         </div>
