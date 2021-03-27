@@ -27,7 +27,7 @@ public class Party {
 
     public Party(){}
 
-    public Party(int id, String name, String extra_info, Integer price_Presale_In_Eur, Integer price_In_Eur, Date date, Date doors) {
+    public Party(Integer id, String name, String extra_info, Integer price_Presale_In_Eur, Integer price_In_Eur, Date date, Date doors) {
         this.id = id;
         this.name = name;
         this.extra_info = extra_info;
@@ -35,6 +35,13 @@ public class Party {
         this.price_In_Eur = price_In_Eur;
         this.date = date;
         this.doors = doors;
+    }
+
+    public Party(String name, String extra_info, Integer price_Presale_In_Eur, Integer price_In_Eur) {
+        this.name = name;
+        this.extra_info = extra_info;
+        this.price_Presale_In_Eur = price_Presale_In_Eur;
+        this.price_In_Eur = price_In_Eur;
     }
 
     public void setVenue(Venue venue) {

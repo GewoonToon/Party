@@ -77,7 +77,8 @@ public class AdminController {
     }
 
     @ModelAttribute("party")
-    public Party findParty(@PathVariable Integer id){
+    public Party findParty(@PathVariable (required = false) Integer id){
+        if(id==null){return null;}
         logger.info("findparty "+id);
         Optional<Party> optionalParty = partyRepository.findById(id);
         if(optionalParty.isPresent()){
@@ -85,6 +86,39 @@ public class AdminController {
         }
         return null;
 
+    }
+
+    @GetMapping("/partynew")
+    public String partyNew(Model model,
+                           @RequestParam (required = false) String name,
+                           @RequestParam (required = false) String extra_info,
+                           @RequestParam (required = false) Integer price_Presale_In_Eur,
+                           @RequestParam (required = false) Integer price_In_Eur){
+        ArrayList<String> errors = new ArrayList<>();
+        Party newParty = new Party(name, extra_info, price_In_Eur, price_Presale_In_Eur);
+        model.addAttribute("errors", errors);
+        model.addAttribute("party", newParty);
+        /*model.addAttribute("name", name);
+        model.addAttribute("extra_info", extra_info);
+        model.addAttribute("price_Presale_In_Eur", price_Presale_In_Eur);
+        model.addAttribute("price_In_Eur", price_In_Eur);*/
+
+        return "admin/partynew";
+    }
+
+    @PostMapping("/partynew")
+    public String partyNewPost(Model model,
+                               @RequestParam (required = false) String name,
+                               @RequestParam (required = false) String extra_info,
+                               @RequestParam (required = false) Integer price_Presale_In_Eur,
+                               @RequestParam (required = false) Integer price_In_Eur){
+        ArrayList<String> errors = new ArrayList<>();
+        Party newParty = new Party(name, extra_info, price_In_Eur, price_Presale_In_Eur);
+        partyRepository.save(newParty);
+        model.addAttribute("errors", errors);
+        model.addAttribute("party", newParty);
+
+        return "partylist";
     }
 
 
