@@ -7,8 +7,10 @@ import java.util.Date;
 
 @Entity
 public class Party {
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "party_generator")
+    @SequenceGenerator(name = "party_generator", sequenceName = "party_seq", allocationSize = 1)
     @Id
-    private int id;
+    private Integer id;
     private String name, extra_info;
     private Integer price_Presale_In_Eur, price_In_Eur;
     @Temporal(TemporalType.DATE)
